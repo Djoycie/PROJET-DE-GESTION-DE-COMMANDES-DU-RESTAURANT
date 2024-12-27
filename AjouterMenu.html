@@ -9,7 +9,7 @@
 <body>
     <section id="ajouter-article">
         <h1>Ajouter un article</h1>
-        <form id="form-ajouter-article">
+        <form action="ajouter.php" method="post">
             <label for="nom-article">Nom de l'article :</label>
             <input type="text" id="nom-article" name="nom-article"><br><br>
             <label for="description-article">Description de l'article :</label>
@@ -18,9 +18,11 @@
             <input type="number" id="prix-article" name="prix-article"><br><br>
             <label for="quantite-article">Quantité de l'article :</label>
             <input type="number" id="quantite-article" name="quantite-article"><br><br>
+            <label for="image-article">Image de l'article :</label>
+            <input type="file" id="image-article" name="image-article"><br><br>
             <input type="submit" value="Ajouter">
         </form>
     </section>
-    <script src="admin.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
