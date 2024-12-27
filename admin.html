@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="register.css">
+</head>
+<body>
+    <h1>Inscription</h1>
+    <div class="container">
+         
+        <form action="admin.php" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required>
+        </div>
+
+        <div class="form-group">
+        <label for="description">Description :</label>
+        <input type="text" id="description" name="description" required>
+        </div>
+    
+        <div class="form-group">
+        <label for="image">image :</label>
+        <input type="file" id="image" name="image" required accept="image/*">
+        </div>
+
+        <div class="form-group">
+        <label for="telephone">prix:</label>
+        <input type="prix" id="prix" name="prix" required>
+        </div>
+
+        <button type="submit">ajouter</button>
+        
+        </form>
+        </div>
+</body>
+</html>
