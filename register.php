@@ -24,7 +24,10 @@ $telephone = $_POST['telephone'];
 $mdp_hash = password_hash($mdp, PASSWORD_DEFAULT);
 
 // Insertion des données dans la base de données
+
 $sql = "INSERT INTO customer (nom, prenom, email, mdp, adresse, telephone) VALUES ('$nom', '$prenom', '$email', '$mdp_hash', '$adresse', '$telephone')";
+
+
 
 if ($conn->query($sql) === TRUE) {
 echo "Inscription réussie !";

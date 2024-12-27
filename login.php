@@ -17,7 +17,9 @@ $email = $_POST['email']; // Changer ici pour récupérer l'email
 $mdp = $_POST['mdp'];
 
 // Préparation et exécution de la requête
+
 $sql = "SELECT mdp FROM customer WHERE email = ?"; // Changer ici pour utiliser l'email
+
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $email);
 $stmt->execute();
