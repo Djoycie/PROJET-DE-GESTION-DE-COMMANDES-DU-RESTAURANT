@@ -1,23 +1,35 @@
 <?php
 require_once 'database.php';
 
-if (isset($_POST["nom"]) && isset($_POST["telephone"]) && isset($_POST["adresse"])) {
-  $nom = $_POST["nom"];
-  $telephone = $_POST["telephone"];
-  $adresse = $_POST["adresse"];
+// Récupère toutes les commandes
+$sql = "SELECT * FROM commandes";
+$result = $conn->query($sql);
 
-  $sql = "INSERT INTO commande (nom, telephone, adresse, prix_total) VALUES ('$nom', '$telephone', '$adresse', '" . $_SESSION["prix_total"] . "')";
-  $conn->query($sql);
+if ($result && $result->num_rows > 0) {
+    echo "<h1>Historiques des commandes des clients</h1>";
+    echo "<table border='1'>"; // Ajout d'un tableau avec une bordure
+    echo "<tr>
+            <th>Commande ID</th>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Téléphone</th>
+            <th>Moyen de paiement</th>
+            <th>Articles</th>
+          </tr>";
 
-  foreach ($_SESSION["panier"] as $article) {
-    $sql = "INSERT INTO commande_article (id_commande, id_article, quantite, prix) VALUES (LAST_INSERT_ID(), '" . $article["id"] . "', '" . $article["quantite"] . "', '" . $article["prix"] . "')";
-    $conn->query($sql);
-  }
-
-  unset($_SESSION["panier"]);
-  unset($_SESSION["prix_total"]);
-
-  header("Location: index.php");
-  exit;
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . htmlspecialchars($row["id"]) . "</td>";
+        echo "<td>" . htmlspecialchars($row["nom"]) . "</td>";
+        echo "<td>" . htmlspecialchars($row["adresse"]) . "</td>";
+        echo "<td>" . htmlspecialchars($row["telephone"]) . "</td>";
+        echo "<td>" . htmlspecialchars($row["moyen_paiement"]) . "</td>";
+        echo "<td>" . nl2br(htmlspecialchars($row["articles"])) . "</td>"; // Utilisation de nl2br pour les retours à la ligne dans les articles
+        echo "</tr>";
+    }
+    
+    echo "</table>"; // Fermeture du tableau
+} else {
+    echo "Aucune commande trouvée";
 }
 ?>

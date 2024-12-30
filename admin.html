@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="register.css">
 </head>
 <body>
-    <h1>Inscription</h1>
+    <h1>AJOUTER UN MENU</h1>
     <div class="container">
          
         <form action="admin.php" method="post" enctype="multipart/form-data">
@@ -26,10 +26,18 @@
         <input type="file" id="image" name="image" required accept="image/*">
         </div>
 
+
+        <div class="form-group">
+            <label for="categorie">Catégorie :</label>
+            <input type="text" id="categorie" name="categorie" required>
+        </div>
+
         <div class="form-group">
         <label for="telephone">prix:</label>
-        <input type="prix" id="prix" name="prix" required>
+        <input type="text" id="prix" name="prix" required>
         </div>
+
+        
 
         <button type="submit">ajouter</button>
         

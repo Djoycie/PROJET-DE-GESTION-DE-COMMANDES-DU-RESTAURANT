@@ -8,42 +8,48 @@ if (isset($_POST["id_article"]) && isset($_POST["quantite"])) {
   $quantite = $_POST["quantite"];
 
   // Récupérer l'article depuis la base de données
-  $sql = "SELECT * FROM menu WHERE id = '$id_article'";
+  $sql = "SELECT * FROM menus WHERE id = '$id_article'";
   $result = $conn->query($sql);
   $article = $result->fetch_assoc();
 
-  if (isset($_SESSION["panier"])) {
-    $panier = $_SESSION["panier"];
-    // Ajouter l'article au panier
-    $panier[] = array(
-      "id" => $article["id"],
-      "nom" => $article["nom"],
-      "quantite" => $quantite,
-      "prix" => $article["prix"] * $quantite
-    );
-    $_SESSION["panier"] = $panier;
-    $_SESSION["prix_total"] += $article["prix"] * $quantite;
-  } else {
-    // Créer un nouveau panier
-    $_SESSION["panier"] = array(
-      array(
+  if ($article) { // Vérifier si l'article existe
+    if (isset($_SESSION["panier"])) {
+      $panier = $_SESSION["panier"];
+      // Ajouter l'article au panier
+      $panier[] = array(
         "id" => $article["id"],
         "nom" => $article["nom"],
         "quantite" => $quantite,
+        "categorie" => isset($article["categorie"]) ? $article["categorie"] : 'Inconnue', // Valeur par défaut
         "prix" => $article["prix"] * $quantite
-      )
-    );
-    $_SESSION["prix_total"] = $article["prix"] * $quantite;
+      );
+      $_SESSION["panier"] = $panier;
+      $_SESSION["prix_total"] += $article["prix"] * $quantite;
+    } else {
+      // Créer un nouveau panier
+      $_SESSION["panier"] = array(
+        array(
+          "id" => $article["id"],
+          "nom" => $article["nom"],
+          "quantite" => $quantite,
+          "categorie" => isset($article["categorie"]) ? $article["categorie"] : 'Inconnue', // Valeur par défaut
+          "prix" => $article["prix"] * $quantite
+        )
+      );
+      $_SESSION["prix_total"] = $article["prix"] * $quantite;
+    }
+
+    echo "<p>Article ajouté au panier avec succès!</p>";
+  } else {
+    echo "<p>Article non trouvé.</p>";
+  }
+  
+  header("Refresh: 1; URL=index.php");
+  exit();
 }
 
-echo "<p>Article ajouté au panier avec succès!</p>";
-}
-
-header("Refresh: 1; URL=index.php");
-exit();
-
-//Récupérer tous les articles pour le formulaire
-$sql = "SELECT * FROM menu";
+// Récupérer tous les articles pour le formulaire
+$sql = "SELECT * FROM menus";
 $result = $conn->query($sql);
 ?>
 
@@ -60,7 +66,7 @@ $result = $conn->query($sql);
   <label for="id_article">Choisissez un article :</label>
   <select name="id_article" id="id_article" required>
     <?php while ($article = $result->fetch_assoc()): ?>
-      <option value="<?= $article['id']; ?>">
+      <option value="<?= htmlspecialchars($article['id']); ?>">
         <?= htmlspecialchars($article['nom']) . " - Prix: " . htmlspecialchars($article['prix']) . "€"; ?>
       </option>
     <?php endwhile; ?>
@@ -69,5 +75,7 @@ $result = $conn->query($sql);
   <input type="number" name="quantite" id="quantite" min="1" value="1" required>
   <button type="submit">Ajouter au Panier</button>
 </form>
- <!-- Afficher le panier -->
- 
+
+<!-- Afficher le panier -->
+</body>
+</html>

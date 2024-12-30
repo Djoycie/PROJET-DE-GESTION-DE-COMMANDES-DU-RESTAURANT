@@ -35,7 +35,7 @@ if ($stmt->num_rows > 0) {
         // Authentification réussie
         echo "Connexion réussie !";
         // Rediriger vers une page protégée ou la page d'accueil
-        header("Location: index.html");
+        header("Location: index.php");
         exit();
     } else {
         echo "Mot de passe incorrect.";

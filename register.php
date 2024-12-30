@@ -31,7 +31,7 @@ $sql = "INSERT INTO customer (nom, prenom, email, mdp, adresse, telephone) VALUE
 
 if ($conn->query($sql) === TRUE) {
 echo "Inscription réussie !";
-header ("Location:index.html");
+header ("Location:index.php");
 exit();
 } else {
 echo "Error: " . $sql . "<br>" . $conn->error;

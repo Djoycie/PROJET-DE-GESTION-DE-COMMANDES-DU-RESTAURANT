@@ -46,6 +46,7 @@ body {
     
     button[type="submit"]:hover {
     background-color: #3e8e41;
+    text-align: center;
     }
     h1{
 text-align:  center;
