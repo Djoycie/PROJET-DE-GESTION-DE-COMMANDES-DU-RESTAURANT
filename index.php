@@ -14,26 +14,7 @@ if (!isset($_SESSION["prix_total"])) {
 require_once 'database.php';
 
 // Traitement de la recherche
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['recherche'])) {
-    $recherche = $_POST['recherche'];
-    $sql = "SELECT * FROM menus WHERE nom LIKE '%$recherche%'";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        echo "<h2>Résultats de la recherche</h2>";
-        echo "<ul>";
-        while($row = $result->fetch_assoc()) {
-            echo "<li>";
-            echo "<h2>" . $row["nom"] . "</h2>";
-            echo "<p>" . $row["description"] . "</p>";
-            echo "<p>Prix: " . $row["prix"] . "</p>";
-            echo "<img src='" . $row["image"] . "'>";
-            echo "</li>";
-        }
-        echo "</ul>";
-    } else {
-        echo "Aucun résultat trouvé";
-    }
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -42,8 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['recherche'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant</title>
-    
-
     <style>
         body {
             font-family: 'Times New Roman', Times, serif;
@@ -59,29 +38,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['recherche'])) {
             color: #666;
             font-size: 24px;
             margin-bottom: 10px;
+            text-align:center;
+           
         }
         h1::first-letter{
             color:orange;
             font-size: 80px;
         }
         ul {
-            list-style: none;
+
+            list-style-type: none;
             padding: 0;
             margin: 0;
+            display:flex;
+            flex-wrap:wrap;
         }
         li {
+            transition: transform 0.3s, box-shadow 0.3s; /* Transition pour l'effet de survol */
             padding: 20px;
             border-bottom: 1px solid #ddd;
+            border-radius: 10px;
+            margin:13px;
+            width: 28%; /* Deux colonnes avec un peu d'espace */
+    box-shadow: 0 2px 5px rgba(14, 13, 13, 0.1);
+    border:1px solid orange;
         }
+        li:hover {
+    transform: translateY(-5px); /* Effet de levée au survol */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Ombre plus prononcée au survol */
+}
+
         form {
             margin-top: 20px;
         }
         label {
-            display: block;
+            display:inline block;
             margin-bottom: 10px;
         }
         input[type="text"], input[type="number"] {
-            width: 15%;
+            width: 25%;
             height: 10px;
             margin-bottom: 20px;
             padding: 10px;
@@ -94,6 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['recherche'])) {
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin:10px;
         }
         .panier {
             background-color: #f2f2f2;
@@ -129,6 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['recherche'])) {
         #recherche{
         width: 150px;
         height: 10px;
+        
        }
 
        #entete {
@@ -158,16 +155,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['recherche'])) {
        background-size:cover;
        height: 400px;
        width: 100%;
-    }   
+    }  
+    img{
+        width: 100%; /* Prend toute la largeur du cadre */
+        height: auto; /* Garde le ratio d'aspect de l'image */
+    } 
 
-    #contenu-a-propos{
+    #commande {
+       background-color:orange;
       
-       }
+}
 
+#supp {
+       background-color:red;
+       
+}
 
+   </style> 
     
-    </style>
 </head>
+    
 <body>
    
     <header>
@@ -194,6 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['recherche'])) {
             <label for="recherche">Rechercher un menu :</label>
             <input type="text" id="recherche" name="recherche">
             <input type="submit" value="Rechercher">
+
         </form>
         <form action="" method="post" class="form-filtre">
             <label for="categorie">Filtrer par catégorie :</label>
@@ -207,8 +215,31 @@ while($row = $result->fetch_assoc()) {
 }
 ?>
 </select>
+
 <input class="filt" type="submit" value="Filtrer">
 </form>
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['recherche'])) {
+    $recherche = $_POST['recherche'];
+    $sql = "SELECT * FROM menus WHERE nom LIKE '%$recherche%'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "<h2>Résultats de la recherche</h2>";
+        echo "<ul>";
+        while($row = $result->fetch_assoc()) {
+            echo "<li>";
+            echo "<h2>" . $row["nom"] . "</h2>";
+            echo "<p>" . $row["description"] . "</p>";
+            echo "<p>Prix: " . $row["prix"] . "</p>";
+            echo "<img src='" . $row["image"] . "'>";
+            echo "</li>";
+        }
+        echo "</ul>";
+    } else {
+        echo "Aucun résultat trouvé";
+    }
+}
+?>
 <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['categorie'])) {
 $categorie = $_POST['categorie'];
@@ -222,7 +253,7 @@ echo "<ul>";
 while($row = $result->fetch_assoc()) {
 echo "<li>";
 echo "<h2>" . $row["nom"] . "</h2>";
-echo "<p>" . $row["description"] . "</p>";
+echo "<p> Description: " . $row["description"] . "</p>";
 echo "<p>Prix: " . $row["prix"] . "</p>";
 echo "<p>Categorie: " . $row["categorie"] . "</p>";
 echo "<img src='" . $row["image"] . "'>";
@@ -249,12 +280,31 @@ echo "Aucun article trouvé";
 <p>Nous avons un systeme de livraison pour les commandes donc tout pour vous faire plaisir .</p>
 <p>Nous faisons aussi dans le service traiteur pour toute sorte d'evenements.</p>
 </section>
+
 <section class="contenu-onglet" id="contenu-contacts">
-<h2>Temoignages</h2>
-<p>Moi c'est Ndock Mbidi grand restaurateur je confirme la qualité des plats de Master Chef.</p>
-<p>Accompagné de Ndock Mbidi moi c'est Tresor Mula j'ai fait un tour au restaurant Master Chef et a vrai dire les gars c'est une dinguerie.</p>
-<p>Trop parler c'est maladie allez s'y faire un tour.</p>
+  <h2>Témoignages</h2>
+  <button id="envoyer-temoignage"  style="display: none;">Envoyer votre témoignage</button>
+  <form id="formulaire-temoignage" action="ajouter_temoin.php" method ="post "style="display: none;">
+    <label for="temoignage">Votre témoignage :</label>
+    <textarea id="temoignage" name="temoignage" required></textarea>
+    <input type="submit" name="envoyer" value="Envoyer">
+  </form>
+  <?php
+    // Afficher les témoignages
+    $sql = "SELECT * FROM temoignage";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
+        echo "<p>" . $row["temoignage"] . "</p>";
+        echo "<form action='' method='post'>";
+        echo "<input type='hidden' name='id_temoignage' value='" . $row["id"] . "'>";
+       echo "</form>";
+      }
+    }
+  ?>
 </section>
+
+
 <section class="contenu-onglet" id="contenu-panier">
 <h2>Panier</h2>
 <?php 
@@ -268,7 +318,7 @@ echo "<p>Quantité: " . $article["quantite"] . "</p>";
 echo "<p>Prix calculé: " . $article["prix"] . "</p>";
 echo "<form action='' method='post'>";
 echo "<input type='hidden' name='id_article' value='" . $key . "'>";
-echo "<input type='submit' name='supprimer' value='Supprimer'>";
+echo "<input id='supp' type='submit' name='supprimer' value='Supprimer'>";
 echo "</form>";
 echo "</li>";
 }
@@ -291,7 +341,7 @@ if (isset($_SESSION["panier"][$id_article])) {
                 }
                 echo "<p>Montant total: " . $_SESSION["prix_total"] . "</p>";
                 echo "<form action='commande.php' method='post'>";
-                echo "<input type='submit' value='Commander'>";
+                echo "<input id='commande' type='submit' value='Commander'>";
                 echo "</form>";
             } else {
                 echo "<h2>Le panier est vide.</h2>";
@@ -314,6 +364,21 @@ if (isset($_SESSION["panier"][$id_article])) {
                 contenus[index].classList.add('actif');
             });
         });
+
+        const ongletTemoignages = document.getElementById('onglet-contacts');
+const boutonEnvoyer = document.getElementById('envoyer-temoignage');
+const formulaire = document.getElementById('formulaire-temoignage');
+
+ongletTemoignages.addEventListener('click', () => {
+  boutonEnvoyer.style.display = 'block';
+});
+
+boutonEnvoyer.addEventListener('click', () => {
+  formulaire.style.display = 'block';
+  boutonEnvoyer.style.display = 'none';
+});
+
+
     </script>
 </body>
 </html>

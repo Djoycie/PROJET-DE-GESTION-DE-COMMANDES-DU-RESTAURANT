@@ -59,9 +59,67 @@ updateArticle($conn, $article);
 <head>
     <meta charset="UTF-8">
     <title>Modifier l'article</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+    background-size: cover;
+    background-image: url(imgs/img-fond1.jpg);
+    backdrop-filter: blur(5px);
+    }
+        
+        
+        h1 {
+            text-align: center;
+            color: white;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type='text'],
+        input[type='number'],
+        textarea,
+        select {
+            width: 94%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        input[type='file'] {
+            margin-bottom: 15px;
+        }
+        input[type='submit'] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin:0 auto;
+            display:block;
+            
+        }
+        input[type='submit']:hover {
+            background-color: #218838;
+           
+        }
+        form{
+            border: 2px solid green;
+  padding: 20px;
+  width: 350px;
+  margin: 20px auto;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   border-radius:10px;
+
+        }
+        
+    </style>
 </head>
 <body>
-    <h1>Modifier l'article</h1>
+    <h1>Modifier le menu</h1>
     <form method='post' action='' enctype='multipart/form-data'>
         <!-- Ajoute enctype pour les fichiers -->
         <label for='nom'>Nom :</label>
