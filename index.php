@@ -230,7 +230,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['recherche'])) {
             echo "<li>";
             echo "<h2>" . $row["nom"] . "</h2>";
             echo "<p>" . $row["description"] . "</p>";
-            echo "<p>Prix: " . $row["prix"] . "</p>";
+            echo "<p>Prix: XAF " . $row["prix"] . "</p>";
             echo "<img src='" . $row["image"] . "'>";
             echo "</li>";
         }
@@ -254,7 +254,7 @@ while($row = $result->fetch_assoc()) {
 echo "<li>";
 echo "<h2>" . $row["nom"] . "</h2>";
 echo "<p> Description: " . $row["description"] . "</p>";
-echo "<p>Prix: " . $row["prix"] . "</p>";
+echo "<p>Prix: XAF " . $row["prix"] . "</p>";
 echo "<p>Categorie: " . $row["categorie"] . "</p>";
 echo "<img src='" . $row["image"] . "'>";
 echo "<form action='ajouter_au_panier.php' method='post'>";

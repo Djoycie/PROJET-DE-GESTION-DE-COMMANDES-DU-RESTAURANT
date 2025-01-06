@@ -12,6 +12,14 @@
     background-image: url(imgs/img-fond1.jpg);
     backdrop-filter: blur(5px);
     }
+
+    .image-gauche{
+        float: right;
+        margin-right: 20px;
+        width: 65px;
+        height: 45px;
+        margin-top: -10px;
+    }
     
     .container {
     width: 400px;
@@ -79,6 +87,8 @@
     <div class="container">
          
         <form action="register.php" method="post">
+            <img src="logo.jpg" alt="image" class="image-gauche">
+
         <div class="form-group">
         <label for="nom">Nom :</label>
         <input type="text" id="nom" name="nom" required>

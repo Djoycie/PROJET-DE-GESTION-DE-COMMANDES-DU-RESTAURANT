@@ -53,4 +53,10 @@ text-align:  center;
 color: #fff;
 margin-top: 50px;
     }
+    .image-gauche{
+        float: left;
+        margin-right: 20px;
+        width: 20px;
+        height: 15px;
+    }
 
