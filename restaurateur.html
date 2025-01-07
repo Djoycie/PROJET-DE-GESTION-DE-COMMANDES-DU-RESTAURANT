@@ -4,17 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="question.css">
+    <link rel="stylesheet" type="text/css" href="register.css">
 </head>
 <body>
     <div class="container">
-        <h2>QUE VOULEZ VOUS FAIRE?</h2>
-        <p>Choisissez ce que vous voulez faire:</p>
-        <div class="boutons">
-        <button class="btn-client" onclick="window.location.href='afficher_menu.php'">Gestion du menu</button>
-        <button class="btn-admin" onclick="window.location.href='commander.php'">Historique des commandes</button>
-        <button class="btn-admin" onclick="window.location.href='satisfaction.php'">Rapport Satisfaction Client</button>
+      <div class="header-container">
+        <img src="images/food logo.png" alt="Restaurant Logo" class="logo">
+        <h1>Inscription</h1>
+      </div>
+        <form action="register.php" method="post">
+        <div class="form-group">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom"  placeholder="Entrer votre nom " name="nom" required>
         </div>
+        <div class="form-group">
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom"  placeholder="Entrer votre prénom " name="prenom" required>
+        </div>
+        <div class="form-group">
+        <label for="email">Email :</label>
+        <input type="email" id="email" placeholder="Entrer votre adresse electronique" name="email" required>
+        </div>
+        <div class="form-group">
+        <label for="mdp">Mot de passe :</label>
+        <input type="password" id="mdp" placeholder="Entrer votre mot de passe " name="mdp" required>
+        </div>
+        <div class="form-group">
+        <label for="adresse">Adresse :</label>
+        <input type="text" id="adresse" placeholder="Entrer votre adresse local " name="adresse" required>
+        </div>
+        <div class="form-group">
+        <label for="telephone">Téléphone :</label>
+        <input type="tel" id="telephone" placeholder="Entrer votre numero de téléphone " name="telephone" required>
+        </div>
+        <button type="submit">S'inscrire</button>
+        <div class="text-container">
+        <p style="display: inline; font-weight: bold;">Avez-vous déjà un compte ?</p> 
+        <p style="display: inline; margin-left: 10px;"><a href="LoginClient.html" class="link-tomato">se connecter</a></p>
+        </div>
+        </form>
         </div>
 </body>
 </html>
