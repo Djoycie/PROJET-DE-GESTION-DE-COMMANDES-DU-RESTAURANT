@@ -25,11 +25,6 @@ body {
         gap: 10px; /* Espace entre les boutons */
     }
     
-    
-    
-   
-    
-
 .btn-client, .btn-admin {
     background-color: #007bff; /* Couleur de fond */
     color: white; /* Couleur du texte */

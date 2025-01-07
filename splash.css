@@ -39,7 +39,7 @@
   .barre-chargement {
     width: 0%;
     height: 100%;
-    background-color: #007bff;
+    background-color: tomato;
     animation: chargement 3s linear infinite;
   }
   
