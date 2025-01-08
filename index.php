@@ -26,7 +26,7 @@ require_once 'database.php';
     <style>
         body {
             font-family: 'Times New Roman', Times, serif;
-            background-color: #f7f7f7;
+            background-image: radial-gradient(circle, #f9ecec, #fae8e4, #f6d7d2, #f0f2d2); 
         }
         h1 {
             color: white;
@@ -35,10 +35,21 @@ require_once 'database.php';
             
         }
         h2 {
-            color: #666;
+            color: tomato;
             font-size: 24px;
             margin-bottom: 10px;
             text-align:center;
+            font-family:Georgia;
+           
+        }
+
+        h3 {
+            color: tomato;
+            font-size: 30px;
+            margin-bottom: 10px;
+            text-align:center;
+            text-decoration:underline;
+            font-family:Arial;
            
         }
         h1::first-letter{
@@ -47,11 +58,13 @@ require_once 'database.php';
         }
         ul {
 
+           
             list-style-type: none;
             padding: 0;
             margin: 0;
             display:flex;
             flex-wrap:wrap;
+            
         }
         li {
             transition: transform 0.3s, box-shadow 0.3s; /* Transition pour l'effet de survol */
@@ -61,15 +74,21 @@ require_once 'database.php';
             margin:13px;
             width: 28%; /* Deux colonnes avec un peu d'espace */
     box-shadow: 0 2px 5px rgba(14, 13, 13, 0.1);
-    border:1px solid orange;
+    border:2px solid #fae8e4;
+    background-color:rgba(255,255,255,0.5);
+    
         }
         li:hover {
     transform: translateY(-5px); /* Effet de levée au survol */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Ombre plus prononcée au survol */
+    
 }
 
-        form {
+        .header_container{
             margin-top: 20px;
+            display: flex;
+            
+           
         }
         label {
             display:inline block;
@@ -122,11 +141,34 @@ require_once 'database.php';
             display: block;
             border-bottom:2px solid orange;
         }
+        .form-recherche{
+            display: inline;
+            margin-left:210px;
+        }
+        .form-filtre{
+            display: inline;
+            
+        }
+        .form-container{
+            display: inline;
+            align-items: top;
+            justify-content:center;
+            
+
+        }
+        .form-element-1{
+            position: relative;
+            justify-self: center;
+            padding: 10px;
+            margin: -5px;
+            
+
+        }
         #recherche{
         width: 150px;
         height: 10px;
-        
-       }
+     
+       } 
 
        #entete {
         position: relative;
@@ -195,18 +237,20 @@ require_once 'database.php';
     </header>
     
     <section class="contenu-onglet actif" id="contenu-menu">
-    <h2>Menu</h2>
+    <h3>Menu</h3>
+    <div class= "header_container">
     <div class="form-container">
         <form action="" method="post" class="form-recherche">
-            <label for="recherche">Rechercher un menu :</label>
-            <input type="text" id="recherche" name="recherche">
-            <input type="submit" value="Rechercher">
+            <label for="recherche" class="form-element-1">Rechercher un menu :</label>
+            <input type="text" id="recherche" name="recherche" class="form-element-1">
+            <input type="submit" value="Rechercher" class="form-element-1">
 
         </form>
         <form action="" method="post" class="form-filtre">
-            <label for="categorie">Filtrer par catégorie :</label>
-            <select id="categorie" name="categorie">
-                <option value="">Toutes les catégories</option>
+            <label for="categorie" class="form-element-1">Filtrer par catégorie :</label>
+            <select id="categorie" name="categorie" class="form-element-1">
+                <option value="" class="form-element-1">Toutes les catégories</option>
+    </div>
 <?php 
 $sql = "SELECT DISTINCT categorie FROM menus";
 $result = $conn->query($sql);
@@ -242,32 +286,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['recherche'])) {
 ?>
 <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['categorie'])) {
-$categorie = $_POST['categorie'];
-$sql = "SELECT * FROM menus WHERE categorie = '$categorie'";
+    $categorie = mysqli_real_escape_string($conn, $_POST['categorie']);
+    if ($categorie != "") {
+        $sql = "SELECT * FROM menus WHERE categorie = '$categorie'";
+    } else {
+        $sql = "SELECT * FROM menus";
+    }
 } else {
-$sql = "SELECT * FROM menus";
+    $sql = "SELECT * FROM menus";
 }
+
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-echo "<ul>";
-while($row = $result->fetch_assoc()) {
-echo "<li>";
-echo "<h2>" . $row["nom"] . "</h2>";
-echo "<p> Description: " . $row["description"] . "</p>";
-echo "<p>Prix: XAF " . $row["prix"] . "</p>";
-echo "<p>Categorie: " . $row["categorie"] . "</p>";
-echo "<img src='" . $row["image"] . "'>";
-echo "<form action='ajouter_au_panier.php' method='post'>";
-echo "<input type='hidden' name='id_article' value='" . $row["id"] . "'>";
-echo "<label for='quantite'>Quantité:</label>";
-echo "<input type='number' id='quantite' name='quantite' value='1' min='1'>";
-echo "<input type='submit' value='Ajouter au panier'>";
-echo "</form>";
-echo "</li>";
-}
-echo "</ul>";
+    echo "<ul>";
+    while($row = $result->fetch_assoc()) {
+        echo "<li>";
+        echo "<h2>" . htmlspecialchars($row["nom"]) . "</h2>";
+        echo "<p>Description: " . htmlspecialchars($row["description"]) . "</p>";
+        echo "<p>Prix: XAF " . htmlspecialchars($row["prix"]) . "</p>";
+        echo "<p>Categorie: " . htmlspecialchars($row["categorie"]) . "</p>";
+        echo "<img src='" . htmlspecialchars($row["image"]) . "'>";
+        echo "<form action='ajouter_au_panier.php' method='post'>";
+        echo "<input type='hidden' name='id_article' value='" . htmlspecialchars($row["id"]) . "'>";
+        echo "<label for='quantite'>Quantité:</label>";
+        echo "<input type='number' id='quantite' name='quantite' value='1' min='1'>";
+        echo "<input type='submit' value='Ajouter au panier'>";
+        echo "</form>";
+        echo "</li>";
+    }
+    echo "</ul>";
 } else {
-echo "Aucun article trouvé";
+    echo "Aucun article trouvé";
 }
 ?>
 </section>
