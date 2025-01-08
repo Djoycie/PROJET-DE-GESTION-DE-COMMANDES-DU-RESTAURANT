@@ -3,119 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-    <style>
-        body {
-    font-family: 'Times New Roman', Times, serif;
-    background-size: cover;
-    background-image: url(imgs/img-fond1.jpg);
-    backdrop-filter: blur(5px);
-    }
-
-    .image-gauche{
-        float: right;
-        margin-right: 20px;
-        width: 65px;
-        height: 45px;
-        margin-top: -10px;
-    }
-    
-    .container {
-    width: 400px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 0px 10px rgba(151, 223, 167, 0.5);
-    height: 480px;
-    }
-    
-    h2 {
-    margin-top: 0;
-    }
-    
-    .form-group {
-    margin-bottom: 15px;
-    }
-    label {
-        display: block;
-        margin-bottom: 10px;
-        }
-        
-        input[type="text"], input[type="email"], input[type="password"], input[type="tel"] {
-        width: 98%;
-        height: 20px;
-        margin-bottom: -10px;
-        padding: 5px;
-        border: 1px solid #ccc;
-        border-radius: 50px;
-        }
-        
-        button[type="submit"] {
-        width: 40%;
-        height: 40px;
-        background-color: #54ca68;
-        color: #fff;
-        padding: 10px;
-        border: none;
-        border-radius: 7px;
-        cursor: pointer;
-        margin: 0 auto;
-        display: block;
-        margin-top: 45px;
-        }
-        a{
-            position: absolute;
-            top: 510px;
-        }
-        
-        
-        button[type="submit"]:hover {
-        background-color: #07642e;
-
-        }
-        h1{
-            text-align:  center;
-            color: #fff;
-                }
-    </style>
+    <link rel="stylesheet" type="text/css" href="register.css">
+    <title>Inscription Client</title>
 </head>
 <body>
-    <h1>Inscription</h1>
     <div class="container">
-         
+      <div class="header-container">
+        <img src="images/food logo.png" alt="Restaurant Logo" class="logo">
+        <h1>Inscription</h1>
+      </div>
         <form action="register.php" method="post">
-            <img src="logo.jpg" alt="image" class="image-gauche">
-
         <div class="form-group">
         <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" required>
+        <input type="text" id="nom"  placeholder="Entrer votre nom " name="nom" required>
         </div>
         <div class="form-group">
         <label for="prenom">Prénom :</label>
-        <input type="text" id="prenom" name="prenom" required>
+        <input type="text" id="prenom"  placeholder="Entrer votre prénom " name="prenom" required>
         </div>
         <div class="form-group">
         <label for="email">Email :</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" placeholder="Entrer votre adresse electronique" name="email" required>
         </div>
         <div class="form-group">
         <label for="mdp">Mot de passe :</label>
-        <input type="password" id="mdp" name="mdp" required>
+        <input type="password" id="mdp" placeholder="Entrer votre mot de passe " name="mdp" required>
         </div>
         <div class="form-group">
         <label for="adresse">Adresse :</label>
-        <input type="text" id="adresse" name="adresse" required>
+        <input type="text" id="adresse" placeholder="Entrer votre adresse local " name="adresse" required>
         </div>
         <div class="form-group">
         <label for="telephone">Téléphone :</label>
-        <input type="tel" id="telephone" name="telephone" required>
+        <input type="tel" id="telephone" placeholder="Entrer votre numero de téléphone " name="telephone" required>
         </div>
-        
         <button type="submit">S'inscrire</button>
-        <p><a href="LoginClient.html">J'ai deja un compte</a></p>
+        <div class="text-container">
+        <p style="display: inline; font-weight: bold;">Avez-vous déjà un compte ?</p> 
+        <p style="display: inline; margin-left: 10px;"><a href="LoginClient.html" class="link-tomato">se connecter</a></p>
+        </div>
         </form>
         </div>
 </body>
