@@ -31,15 +31,21 @@ if (!empty($search_name)) {
 
 $stmt->execute();
 $result = $stmt->get_result();
+echo "<style>
+    body {
+        background-image: radial-gradient(circle, #f9ecec, #fae8e4, #f6d7d2, hsl(64, 55%, 89%)); 
+    }
+</style>";
 
 if ($result->num_rows > 0) {
-    echo "<h1 style='text-align:center'>GESTION DU MENU</h1>";
-    echo "<form method='post'>";
-    echo " <input type='text' name='search_name' placeholder='Rechercher un menu'>";
+    echo "<h1 style='text-align:center; color:tomato;text-decoration:underline;margin-bottom:45px'>GESTION DU MENU</h1>";
+    echo "<form method='post' style=' display: inline;
+            margin-left:360px; padding:30px;'>";
+    echo " <input type='text' name='search_name' placeholder='Rechercher un menu' style='height:35px'>";
     echo " <button type='submit' style='background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;'>Rechercher</button>";
     echo "</form>";
-    echo "<form method='post'>";
-    echo " <select name='category_filter'>";
+    echo "<form method='post' style=' display: inline;'>";
+    echo " <select name='category_filter'style='height:35px'>";
     echo " <option value=''>Toutes les catégories</option>";
     echo " <option value='Boissons'" . ($category_filter == 'Boissons' ? ' selected' : '') . ">Boissons</option>";
     echo " <option value='plat de resistance'" . ($category_filter == 'plat de resistance' ? ' selected' : '') . ">plat de resistance</option>";
@@ -49,8 +55,8 @@ if ($result->num_rows > 0) {
     echo " </select>";
     echo " <button type='submit' style='background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;'>Filtrer</button>";
     echo "</form>";
-    echo "<table border='1' style='width:100%; border-collapse: collapse; '>";
-    echo " <tr>";
+    echo "<table border='1' style='width:100%; border-collapse: collapse; margin-top:50px'>";
+    echo " <tr style='background-color:white;'>";
     echo " <th style='padding:5px;'>Nom</th>";
     echo " <th>Description</th>";
     echo " <th>Prix (fcfa)</th>";
@@ -59,7 +65,7 @@ if ($result->num_rows > 0) {
     echo " <th>Actions</th>";
     echo " </tr>";
     while ($row = $result->fetch_assoc()) {
-        echo " <tr  style='padding:5px;'>";
+        echo " <tr  style='background-color:rgba(255,255,255,0.5);padding:5px;'>";
         echo " <td  style='padding:5px;'>" . htmlspecialchars($row["nom"]) . "</td>";
         echo " <td  style='padding:5px;'>" . htmlspecialchars($row["description"]) . "</td>";
         echo " <td  style='padding:5px;'>" . htmlspecialchars($row["prix"]) . "</td>";

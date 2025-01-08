@@ -60,68 +60,182 @@ updateArticle($conn, $article);
     <meta charset="UTF-8">
     <title>Modifier l'article</title>
     <style>
-        body {
-            font-family: 'Times New Roman', Times, serif;
-    background-size: cover;
-    background-image: url(imgs/img-fond1.jpg);
-    backdrop-filter: blur(5px);
+      *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Monsterrat', Times, sans-serif, ;
     }
-        
-        
-        h1 {
+    
+    body {
+        background-image: radial-gradient(circle, #f9ecec, #fae8e4, #f6d7d2, #f0f2d2); 
+        backdrop-filter: blur(5px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+        font-family: 'Monsterrat';
+    }
+      
+        .container {   
+        width: 368px;
+        max-width: 100%;
+        overflow: hidden;
+        display: flex;
+        margin:  50px ;
+        padding: 20px;
+        position: relative;
+        background-color: #fff;
+        border-radius: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        }
+
+        .header-container {
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin-bottom: 20px; 
+           }
+   
+   
+       .logo {
+            max-width: 68px; 
+            height: auto;
+            margin-bottom: 0px; 
+        }
+    
+        .container p{
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.3px;
+            margin: 20px 0;
+        }
+    
+        .container span{
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 50px;
             text-align: center;
-            color: white;
+            font-size: 12px;
+            font-weight: bold;
         }
+    
+        .container a{
+            color: tomato;
+            font-size: 13px;
+            text-decoration: none;
+            margin: 15px 0 10px;
+        }
+    
+        .social-icons{
+            font-size: 13px;
+            margin: 25px 0 15px;
+            margin-left: 15px;
+        }
+    
+        
+        
+        #form-connexion {
+        margin-top: 20px;
+        
+        }
+    
+        .form{
+            position: absolute;
+            top: 0;
+            height: 100%;
+            transition: all 0.6s ease-in-out;
+        }
+        
         label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
+        display: block;
+        font-family: 'Geneva', Tahoma, Geneva, Verdana, sans-serif;
+        margin-top: 10px;
+        margin-bottom: 10px;
         }
-        input[type='text'],
-        input[type='number'],
-        textarea,
-        select {
-            width: 94%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-        input[type='file'] {
-            margin-bottom: 15px;
-        }
-        input[type='submit'] {
-            background-color: #28a745;
-            color: white;
-            border: none;
+        
+       input[type="text"], input[type="number"] {
+            width: 100%;
+            height: 35px;
+            font-size: 12px;
+            margin-top: 10px;
+            margin-bottom: 10px;
             padding: 10px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin:0 auto;
-            display:block;
+            border: none;
+            border-radius: 50px;
+            background-color: #eee;
+            outline: none;
+        }
+        .button{
             
         }
-        input[type='submit']:hover {
-            background-color: #218838;
-           
-        }
-        form{
-            border: 2px solid green;
-  padding: 20px;
-  width: 350px;
-  margin: 20px auto;
-  background-color: #f9f9f9;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-   border-radius:10px;
-
+        
+        button[type="submit"] {
+        width: 70%;
+        height: 40px;
+        background-color: tomato;
+        color: #fff;
+        font-size: 12px;
+        padding: 10px;
+        border: 1px solid transparent;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        text-align: center;
+        border-radius: 8px;
+        margin-top: 30px;
+        margin-left: 45px;
+        display:block;
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center;
+        margin-bottom: 30px;
+        cursor: pointer;
         }
         
+        button[type="submit"]:hover {
+        background-color: rgb(248, 127, 106);
+        }
+    
+        .question{
+            margin-left: 35px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            text-decoration: underline;
+            text-decoration-color: tomato;
+        }
+    
+        h1{
+        text-align: center;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        color:tomato;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        }
+        #description{
+            width: 100%;
+            height: 35px;
+            font-size: 12px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 50px;
+            background-color: #eee;
+            outline: none;
+        }
+     
+           
+      
     </style>
 </head>
 <body>
 <div class="container">
         <div class="header-container">
-          <img src="images/food logo.png" alt="Restaurant Logo" class="logo">
+          <img src="logo.jpg" alt="Restaurant Logo" class="logo">
         <h1>Modifier le menu</h1>
         </div>
         <form method='post' action='' enctype='multipart/form-data'>
@@ -144,7 +258,7 @@ updateArticle($conn, $article);
             <label for='image'>Image :</label>
             <input type='file' id='image' name='image'>
             <br>
-            <input type='submit' value='Valider les modifications'>
+            <button type='submit' >Valider les modifications</button>
         </form>
     </div>
     </body>
