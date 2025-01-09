@@ -25,12 +25,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
 // Récupérer tous les témoignages
 $sql = "SELECT * FROM temoignage";
 $result = $conn->query($sql);
+echo "<style>
+    body {
+        background-image: radial-gradient(circle, #f9ecec, #fae8e4, #f6d7d2, hsl(64, 55%, 89%)); 
+    }
+</style>";
 
-echo "<h1 style ='text-align:center;margin:20px;'> Rapport satisfaction client</h1>";
+
+echo "<h1 style ='text-align:center;margin:20px;color:tomato; text-decoration:underline;'> Rapport satisfaction client</h1>";
 
 if ($result->num_rows > 0) {
-    echo "<table border='1' style='margin-top:50px;border-collapse: collapse;'>
-            <tr>
+    echo "<table border='1' style='margin-top:50px;border-collapse: collapse;margin-left:200px;'>
+            <tr style='background-color:white;'>
                 <th>ID</th>
                 <th>Témoignage</th>
                 <th>Actions</th>
@@ -38,7 +44,7 @@ if ($result->num_rows > 0) {
     
     // Afficher chaque témoignage
     while ($row = $result->fetch_assoc()) {
-        echo "<tr>
+        echo "<tr style='background-color:rgba(255,255,255,0.5);padding:5px;'>
                 <td>" . $row['id'] . "</td>
                 <td>" . htmlspecialchars($row['temoignage']) . "</td>
                 <td>
