@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  background-image: radial-gradient(circle, #f9ecec, #fae8e4, #f6d7d2, #f0f2d2); 
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  font-family: 'Monsterrat';
+  }
+  
+  
+  h2 {
+    margin-top: 20px;
+    text-align: center;
+    color: tomato;
+    margin-right: 10px;
+  }
+  .container{
+    width: 20%;
+    height: auto;
+    overflow: hidden;
+    display: flex;
+    margin:  50px ;
+    padding: 30px;
+    position: relative;
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    flex-direction: column;
+    align-items: normal;
+    justify-content: flex-start;
+  }
+
+  .header-container {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 20px; 
+   }
+
+
+.logo {
+    max-width: 72px; 
+    height: auto;
+    margin-bottom: 0px; 
+    margin-left: 26px;
+}
+  
+  form {
+    margin-bottom: 15px;
+        height: 100%;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .input-container {
+     position: relative;
+     margin-bottom: 15px; 
+    }
+ .input-container i 
+  {
+   position: absolute; 
+   top: 41%; 
+   margin-left: 260px; 
+   transform: translateY(-50%);
+   font-size: 16px;
+    color: #aaa; 
+  }
+
+  
+  input[type="text"], input[type="password"] {
+    padding: 10px  ;
+    border: 1px solid tomato;
+    width: 89%;
+    height: 30px;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 50px;
+    background-color: #eee;
+    outline: none;
+  }
+
+  
+  button[type="submit"] {
+    width: 66%;
+    height: 40px;
+    background-color: tomato;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px;
+    border: 1px solid transparent;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 8px;
+    margin-top: 30px;
+    display:block;
+   margin-left: 45px;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    margin-bottom: 30px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: rgb(248, 127, 106);
+  }
+  
+  #message-authentification {
+    margin-top: 20px;
+    color: tomato;
+  }
+  
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h2>Authentification Administrateur</h2>
+<form id="form-authentification">
+<label for="nom-admin">Nom d'utilisateur :</label>
+<input type="text" id="nom-admin" name="nom-admin"><br><br>
+<label for="mdp-admin">Mot de passe :</label>
+<input type="password" id="mdp-admin" name="mdp-admin"><br><br>
+<button type="submit">Se connecter</button>
+</form>
+
+<div id="message-authentification"></div>
+</div>
+
+<script src="LoginAdmin.js"></script>
+</body>
+
+</html>

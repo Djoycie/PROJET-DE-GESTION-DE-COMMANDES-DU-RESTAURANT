@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type de connexion</title>
+
+   <style>
+   
+   body {
+    background-image: radial-gradient(circle, #f9ecec, #fae8e4, #f6d7d2, #f0f2d2); 
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    font-family: 'Monsterrat';
+    }
+    
+    .container {
+    width: 400px;
+    height: auto;
+    margin: 250px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h2 {
+    margin-top: 0;
+    text-align:  center;
+    color: tomato;
+    }
+
+    p{
+        margin-top: 21px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    .boutons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 37px;
+    color: tomato;
+    margin-bottom: 10px;
+    }
+    
+    .btn-client, .btn-admin {
+    width: 45%;
+    height: 40px;
+    background-color: tomato;
+    color: #fff;
+    padding: 6px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    }
+    
+    .btn-client:hover, .btn-admin:hover {
+    background-color: rgb(248, 127, 106);
+    }
+        
+           
+   </style>
+
+</head>
+<body>
+    <div class="container">
+        <h2>Bienvenue chez Master Chef</h2>
+        <p>Comment souhaitez-vous vous connectez??</p>
+        <div class="boutons">
+        <button class="btn-client" onclick="window.location.href='LoginClient.html'">Se connecter en tant que client</button>
+        <button class="btn-admin" onclick="window.location.href='LoginAdmin.html'">Se connecter en tant qu'administrateur</button>
+        </div>
+        </div>
+</body>
+</html>
